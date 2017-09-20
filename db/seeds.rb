@@ -12,4 +12,6 @@ Item.all.each do |item|
   item.category_id = counter
   item.save
   counter += 1
+
+User.create(email: "b@b.com", password: "password", password_confirmation: "password")
 end
