@@ -15,4 +15,14 @@ class Cart < ActiveRecord::Base
 		end
 		update(status: 'checkedout')
 	end
+
+	def add_item(item_id)
+    if items.find_by(id: item_id)
+      li = line_items.find_by(item_id: item_id)
+      li.quantity += 1
+      li
+    else
+			LineItem.create(quantity: 1, item_id: item_id, cart_id: self.id)
+		end
+	end
 end
