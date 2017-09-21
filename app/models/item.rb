@@ -5,4 +5,9 @@ class Item < ActiveRecord::Base
 	def self.available_items
 		where('inventory > 0')
 	end
+
+	def remove_purchased_quant(bought_quant)
+		self.inventory -= bought_quant
+		save
+	end
 end

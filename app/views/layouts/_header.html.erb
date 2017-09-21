@@ -12,7 +12,7 @@
 	        
 		<% end %>
 
-        <% if !!@cart %>
+        <% if !!current_cart %>
           <li> <%= link_to "Cart", cart_path(current_cart) %></li>
         <% end %>
     </ul>

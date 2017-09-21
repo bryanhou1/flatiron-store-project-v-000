@@ -8,4 +8,11 @@ class Cart < ActiveRecord::Base
 		line_items.each { |line_item| total_in_cents += line_item.item.price * line_item.quantity }
 		total_in_cents
 	end
+
+	def checkout
+		line_items.each do |li|
+			Item.find(li.item_id).remove_purchased_quant(li.quantity)
+		end
+		update(status: 'checkedout')
+	end
 end
