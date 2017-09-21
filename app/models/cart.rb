@@ -13,14 +13,14 @@ class Cart < ActiveRecord::Base
 		line_items.each do |li|
 			Item.find(li.item_id).remove_purchased_quant(li.quantity)
 		end
-		update(status: 'checkedout')
+		update(status: 'checked out')
 	end
 
 	def add_item(item_id)
     if items.find_by(id: item_id)
       li = line_items.find_by(item_id: item_id)
       li.quantity += 1
-      li
+      li.save
     else
 			LineItem.create(quantity: 1, item_id: item_id, cart_id: self.id)
 		end
