@@ -4,7 +4,7 @@ class LineItemsController < ApplicationController
 		current_user.current_cart = Cart.create(user_id: current_user.id) if !current_user.current_cart
 
     @cart = current_user.current_cart
-    @cart.add_item(params[:item_id])
+    @cart.add_item(params[:item_id]).save
  
     # #look for items to stack
     # if @cart.line_items.find_by(item_id: params[:item_id])

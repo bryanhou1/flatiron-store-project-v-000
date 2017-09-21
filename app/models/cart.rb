@@ -20,9 +20,10 @@ class Cart < ActiveRecord::Base
     if items.find_by(id: item_id)
       li = line_items.find_by(item_id: item_id)
       li.quantity += 1
-      li.save
+      li
     else
-			LineItem.create(quantity: 1, item_id: item_id, cart_id: self.id)
+			LineItem.new(quantity: 1, item_id: item_id, cart_id: self.id)
+			
 		end
 	end
 end
