@@ -1,8 +1,11 @@
 class CartsController < ApplicationController
-	#auth needed?
+	
 
 	def show
 		@cart = Cart.find(params[:id])
+
+		# consider adding a msg
+		redirect_to store_path unless current_user.id == @cart.user_id && @cart.user_id
 	end
 
 	def checkout
